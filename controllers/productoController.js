@@ -1,10 +1,7 @@
 const Producto = require("../models/Producto");
 
 
-exports.crearProducto=async(req,res) =>{
-    
-    
-
+exports.crearProducto=async(req,res) =>{ 
     try {
         let producto;
         //Creamos nuestro producto
@@ -19,8 +16,7 @@ exports.crearProducto=async(req,res) =>{
     }
 }
 
-exports.obtenerProductos =async(req,res)=>
-    {
+exports.obtenerProductos=async(req,res)=>{
         try {
             const productos= await Producto.find();
             res.json(productos)
@@ -30,8 +26,7 @@ exports.obtenerProductos =async(req,res)=>
         }
     }
 
-exports.actualizarProducto=async(req,res)=>
-    {
+exports.actualizarProducto=async(req,res)=>{
         try {
             const{nombre,categoria, imagen,precio,codigo}= req.body;
             let producto = await Producto.findById(req.params.id);
@@ -53,8 +48,7 @@ exports.actualizarProducto=async(req,res)=>
         }
     }
 
-exports.obtenerProducto=async(req,res)=>
-    {
+exports.obtenerProducto=async(req,res)=>{
         try {
             let producto = await Producto.findById(req.params.id);
             if(!producto)
@@ -69,21 +63,18 @@ exports.obtenerProducto=async(req,res)=>
         }
     }
 
-exports.eliminarProducto=async(req,res)=>
-    {
-        try {
-            let producto = await Producto.findById(req.params.id);
-            if(!producto)
-                {
-                    
-                    res.status(404).json({msg:'No existe el Producto'})
-                } 
+exports.eliminarProducto=async(req,res)=>{
+    try {
+        let producto = await Producto.findById(req.params.id);
+        if(!producto)
+            {
+                res.status(404).json({msg:'No existe el Producto'})
+            } 
+        await Producto.findOneAndDelete({_id:req.params.id})  
+        res.json({msg:'Producto Eliminado'});
 
-                await Producto.findOneAndRemove({_id: req.params.id})
-                res.json({msg:'Producto eliminado con exito'});
-        } catch (error) {
-            console.log(error);
-            res.status(500).send('Hubo un error'); 
-        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Hubo un error'); 
     }
-       
+}

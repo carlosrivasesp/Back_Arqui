@@ -1,5 +1,5 @@
-const { default: mongoose } = require('mongoose');
-const moongose = require('mongoose');
+//const { default: mongoose } = require('mongoose');
+const mongoose = require('mongoose');
 const ProductoSchema= mongoose.Schema({
     nombre:{
         type:String,
