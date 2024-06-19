@@ -4,7 +4,8 @@ const conectarDB = require('./config/db');
 const app = express()
 //conectamos a la base de datos :)
 conectarDB();
-app.use('/api/productos',require('./router/producto'));
+app.use(express.json());
+app.use('/api/producto',require('./router/producto'));
 //ruta principal
 //app.use(express.json())
 
