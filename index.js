@@ -7,6 +7,9 @@ conectarDB();
 
 app.use(express.json())
 
+app.use('/api/productos', require('./routes/productos'));
+
 app.listen(4000, ()=>{
     console.log('El servidor está corriendo')
 })
+
