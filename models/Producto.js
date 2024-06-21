@@ -20,6 +20,10 @@ const ProductoSchema= mongoose.Schema({
     codigo:{
         type:Number,
         require:true
+    },
+    stock:{
+        type:Number,
+        require:true
     }
 });
 

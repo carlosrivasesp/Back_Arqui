@@ -28,7 +28,7 @@ exports.obtenerProductos=async(req,res)=>{
 
 exports.actualizarProducto=async(req,res)=>{
         try {
-            const{nombre,categoria, imagen,precio,codigo}= req.body;
+            const{nombre,categoria, imagen,precio,codigo,stock}= req.body;
             let producto = await Producto.findById(req.params.id);
             if(!producto)
                 {
