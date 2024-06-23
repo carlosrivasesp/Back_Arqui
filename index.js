@@ -16,6 +16,7 @@ app.use(express.json());
 // Definir rutas
 app.use('/api/producto', require('./router/producto'));
 app.use('/api/categoria', require('./router/categoria'));
+app.use('/api/marca', require('./router/marca'));
 
 // Ruta principal
 app.listen(4000, () => {

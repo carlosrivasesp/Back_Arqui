@@ -28,7 +28,7 @@ exports.obtenerProductos=async(req,res)=>{
 
 exports.actualizarProducto=async(req,res)=>{
         try {
-            const{nombre,categoria, imagen,precio,codigo,stock}= req.body;
+            const{nombre,categoria,imagen,precio,codigo,stock,marca}= req.body;
             let producto = await Producto.findById(req.params.id);
             if(!producto)
                 {
@@ -40,6 +40,8 @@ exports.actualizarProducto=async(req,res)=>{
                 producto.imagen=imagen;
                 producto.precio=precio;
                 producto.codigo=codigo;
+                producto.stock=stock;
+                producto.marca=marca;
                 producto=await Producto.findOneAndUpdate({_id:req.params.id},producto,{new:true})
                 res.json(producto);
         } catch (error) {

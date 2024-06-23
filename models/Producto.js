@@ -18,11 +18,15 @@ const ProductoSchema= mongoose.Schema({
         require:true
     },
     codigo:{
-        type:Number,
+        type: String,
         require:true
     },
     stock:{
         type:Number,
+        require:true
+    },
+    marca:{
+        type:String,
         require:true
     }
 });
