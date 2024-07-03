@@ -2,9 +2,9 @@ const Marca = require('../models/Marca');
 
 exports.crearMarca = async (req, res) => {
     try {
-        let marca = new Marca(req.body);
-        await marca.save();
-        res.send(marca);
+        let marca = new Marca(req.body); //crea instancia
+        await marca.save(); //guarda la instancia en la bd
+        res.send(marca); //si es exitoso se crea una respuesta en formato JSON
     } catch (error) {
         console.log(error);
         res.status(500).send('Hubo un error');
@@ -13,7 +13,7 @@ exports.crearMarca = async (req, res) => {
 
 exports.obtenerMarcas = async (req, res) => {
     try {
-        const marcas = await Marca.find();
+        const marcas = await Marca.find(); //busca todas las marcas
         res.json(marcas);
     } catch (error) {
         console.log(error);
@@ -23,15 +23,15 @@ exports.obtenerMarcas = async (req, res) => {
 
 exports.actualizarMarca = async (req, res) => {
     try {
-        const { nombre, descripcion } = req.body;
-        let marca = await Marca.findById(req.params.id);
-        if (!marca) {
+        const { nombre, descripcion } = req.body; //espera recibir datos de la marca
+        let marca = await Marca.findById(req.params.id); //busca por id
+        if (!marca) { //si no existe
             return res.status(404).json({ msg: 'No existe la marca' });
         }
 
         marca.nombre = nombre;
         marca.descripcion = descripcion;
-        marca = await Marca.findOneAndUpdate({ _id: req.params.id }, marca, { new: true });
+        marca = await Marca.findOneAndUpdate({ _id: req.params.id }, marca, { new: true });//guarda cambios y asegura que se devuelvan los datos actualizados
         res.json(marca);
     } catch (error) {
         console.log(error);
